@@ -22,5 +22,8 @@ RSpec.describe 'StringCalculator' do
         include_examples 'add', "1,2,3", 6
         include_examples 'add', "1,2,3,4,5", 15
     end
-
+    context "3. Allow the Add method to handle new lines between numbers instead of commas." do
+        include_examples 'add', "1\n2,3", 6
+        include_examples 'add', "1\n2\n3", 6
+    end
 end
