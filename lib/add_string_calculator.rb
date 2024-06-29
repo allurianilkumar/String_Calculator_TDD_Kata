@@ -18,17 +18,19 @@ class AddStringCalculator
     end
     return check_comma_newline_args(numbers)
   end
+
   # Extract delimiter from input string
   def is_delimiter_exists(numbers)
     return numbers.start_with?("//")
   end
+
   #To Check delimiter custom arguments
   def check_delimiters_custom_args(numbers)
     # matched_str = numbers.match(/\/\/(.)\n(.*)/)
     # delimiter = matched_str[1]
     # new_num = matched_str[2]
     # return new_num.split(delimiter)
-    delimiter_section, numbers_section = numbers.split("//", 2)
+    delimiter_section, numbers_section = numbers.split("\n", 2)
     delimiters = delimiter_section.scan(/\[(.*?)\]/).flatten
     delimiter = delimiters.map { |d| Regexp.escape(d) }.join("|")
     numbers_str = numbers_section

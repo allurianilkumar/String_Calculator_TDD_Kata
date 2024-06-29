@@ -59,4 +59,10 @@ RSpec.describe 'StringCalculator' do
         include_examples 'add', "//[*][%]\n1*2%3", 6
         include_examples 'add', "//[***][%%]\n1***2%%3", 6
     end
+
+    # 9. make sure you can also handle multiple delimiters with length longer than one char
+    context "9. make sure you can also handle multiple delimiters with length longer than one char" do
+        include_examples 'add', "//[***][%%]\n1***1001%%2***3", 6
+        include_examples 'add', "//[***][%%][##]\n1***2%%3##4", 10
+    end
 end
