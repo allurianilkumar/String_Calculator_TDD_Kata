@@ -5,7 +5,7 @@ class AddStringCalculator
   def add(string_numbers)
     arguments_list = arguments_splits(string_numbers)
     check_negative_own_exception(arguments_list)
-    arguments_list.map(&:to_i).reduce(:+)
+    return arguments_list.map(&:to_i).reduce(:+)
   end
 
   private
@@ -14,25 +14,25 @@ class AddStringCalculator
     if(numbers.empty?)
         return [0]
     elsif(is_delimiter_exists(numbers))
-        check_delimiters_custom_args(numbers)
+        return check_delimiters_custom_args(numbers)
     end
-    check_comma_newline_args(numbers)
+    return check_comma_newline_args(numbers)
   end
   # Extract delimiter from input string
   def is_delimiter_exists(numbers)
-    numbers.start_with?("//")
+    return numbers.start_with?("//")
   end
   #To Check delimiter custom arguments
   def check_delimiters_custom_args(numbers)
     matched_str = numbers.match(/\/\/(.)\n(.*)/)
     delimiter = matched_str[1]
     new_num = matched_str[2]
-    new_num.split(delimiter)
+    return new_num.split(delimiter)
   end
 
   #{check comma or newline arguments
   def check_comma_newline_args(numbers)
-    numbers.split(/[,,\n]/)
+    return numbers.split(/[,,\n]/)
   end
 
   # negative numbers not allowed
@@ -43,7 +43,4 @@ class AddStringCalculator
         raise RuntimeError, "negative numbers not allowed #{nums.join(",")}"
     end
   end
-
-
-
 end

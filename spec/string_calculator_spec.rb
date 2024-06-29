@@ -26,4 +26,7 @@ RSpec.describe 'StringCalculator' do
         include_examples 'add', "1\n2,3", 6
         include_examples 'add', "1\n2\n3", 6
     end
+    context "4. Support different delimiters" do
+        include_examples 'add', "//;\n1;2", 3
+    end
 end
