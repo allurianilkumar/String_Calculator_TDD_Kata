@@ -112,7 +112,7 @@ end
 
 ## 1.Run your RSpec tests:
 
-bundle exec rspec
+bundle exec rspec --format documentation
 
 OR
 

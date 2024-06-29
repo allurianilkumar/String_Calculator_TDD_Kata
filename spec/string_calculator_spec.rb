@@ -18,5 +18,6 @@ RSpec.describe 'StringCalculator' do
         include_examples 'add', "1", 1
         include_examples 'add', "1,5", 6
     end
+    
 
 end
