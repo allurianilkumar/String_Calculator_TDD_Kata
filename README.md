@@ -117,3 +117,11 @@ bundle exec rspec --format documentation
 OR
 
 rspec --format documentation
+
+# Run All Test Cases
+
+ruby main.rb
+
+[![remote](result.png)]
+
+[![local](result1.png)]
