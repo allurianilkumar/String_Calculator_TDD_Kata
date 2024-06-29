@@ -13,6 +13,11 @@ RSpec.describe 'StringCalculator' do
           expect(@string_calculator.add(input)).to eq(expected)
         end
     end
+    shared_examples 'add_errors' do |input, expected|
+        it "When the add input is #{input} Then result is #{expected} value" do
+          expect { @string_calculator.add(input) }.to raise_error(RuntimeError, expected)
+        end
+    end
     context "1. Create a simple String calculator with a method signature" do
         include_examples 'add', "", 0
         include_examples 'add', "1", 1
@@ -28,5 +33,9 @@ RSpec.describe 'StringCalculator' do
     end
     context "4. Support different delimiters" do
         include_examples 'add', "//;\n1;2", 3
+    end
+    context "5.Calling add with a negative number will throw an exception: negative numbers not allowed negative_number" do
+        include_examples 'add_errors', "1,-2,3", "negative numbers not allowed -2"
+        include_examples 'add_errors', "-1,-2,3", "negative numbers not allowed -1,-2"
     end
 end
