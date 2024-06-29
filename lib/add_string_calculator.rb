@@ -5,7 +5,7 @@ class AddStringCalculator
   def add(string_numbers)
     arguments_list = arguments_splits(string_numbers)
     check_negative_own_exception(arguments_list)
-    return arguments_list.map(&:to_i).reduce(:+)
+    return arguments_list.map(&:to_i).reject { |n| n > 1000 }.reduce(:+)
   end
 
   private
@@ -24,10 +24,16 @@ class AddStringCalculator
   end
   #To Check delimiter custom arguments
   def check_delimiters_custom_args(numbers)
-    matched_str = numbers.match(/\/\/(.)\n(.*)/)
-    delimiter = matched_str[1]
-    new_num = matched_str[2]
-    return new_num.split(delimiter)
+    # matched_str = numbers.match(/\/\/(.)\n(.*)/)
+    # delimiter = matched_str[1]
+    # new_num = matched_str[2]
+    # return new_num.split(delimiter)
+    delimiter_section, numbers_section = numbers.split("//", 2)
+    delimiters = delimiter_section.scan(/\[(.*?)\]/).flatten
+    delimiter = delimiters.map { |d| Regexp.escape(d) }.join("|")
+    numbers_str = numbers_section
+    numbers = numbers_str.split(/#{delimiter}/).map(&:to_i)
+    return numbers
   end
 
   #{check comma or newline arguments
