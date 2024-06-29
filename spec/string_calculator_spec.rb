@@ -18,6 +18,9 @@ RSpec.describe 'StringCalculator' do
         include_examples 'add', "1", 1
         include_examples 'add', "1,5", 6
     end
-    
+    context "2. Allow the Add method to handle an unknown amount of numbers" do
+        include_examples 'add', "1,2,3", 6
+        include_examples 'add', "1,2,3,4,5", 15
+    end
 
 end
